@@ -1,5 +1,4 @@
 .env
 /vendor
-cache/views/*
 composer.lock
 .php-cs-fixer.cache
