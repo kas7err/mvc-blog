@@ -45,7 +45,6 @@ class Request {
 
     public function all(): array
     {
-        return $this->params;
+        return sanitize($this->params, trim:false);
     }
-
 }

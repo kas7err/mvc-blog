@@ -54,8 +54,13 @@ function array_trim(array $items): array
 */
 function sanitize(array $inputs, array $fields = [], int $default_filter = FILTER_SANITIZE_STRING, array $filters = FILTERS, bool $trim = true): array
 {
-    /* var_dump($inputs); */
-    /* die(); */
+    // since WYSIWYG editors already trim scripts/php tags
+    // im excluding DESC field from the sanitization
+    if(isset($inputs['description'])) {
+        $desc = ['description' => $inputs['description']];
+        unset($inputs['description']);
+    }
+
     if ($fields) {
         $options = array_map(fn($field) => $filters[$field], $fields);
         $data = filter_var_array($inputs, $options);
@@ -63,5 +68,6 @@ function sanitize(array $inputs, array $fields = [], int $default_filter = FILTE
         $data = filter_var_array($inputs, $default_filter);
     }
 
-    return $trim ? array_trim($data) : $data;
+    $data = array_merge($trim ? array_trim($data) : $data, $desc);
+    return $data;
 }
