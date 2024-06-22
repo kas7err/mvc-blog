@@ -6,7 +6,7 @@
 <h1 class="my-4"> DASHBOARD </h1>
 <form method="post" action="/stl-admin/article/create">
     <div class="form-group">
-        <label for="title">Title</label><br>
+        <label for="title" class="font-weight-bold">Title</label><br>
         <input type="text" name="title" id="">
 
         @if(isset($errors['title']))
@@ -19,7 +19,7 @@
     </div>
 
     <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description" class="font-weight-bold">Description</label>
         <textarea id="tinyeditor" name="description"></textarea>
 
         @if(isset($errors['description']))
@@ -31,7 +31,7 @@
         @endif
     </div>
 
-    <button>Submit</button>
+    <button class="btn btn-primary px-5 font-weight-bold" >Create</button>
 
 </form>
 
@@ -39,13 +39,21 @@
 @endsection
 
 @section('tiny')
-<script src="https://cdn.tiny.cloud/1/{{$_ENV['TINY_MCE_KEY']}}/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 <script>
-  tinymce.init({
-    selector: 'textarea#tinyeditor',
-    plugins: 'code table lists',
-    // extended_valid_elements : 'img[class|src|alt|title|width|loading=lazy]',
-    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
-  });
+    CKEDITOR.replace( 'tinyeditor' );
+    CKEDITOR.config.height = '25em';
 </script>
+
+
+
+<!-- <script src="https://cdn.tiny.cloud/1/{{$_ENV['TINY_MCE_KEY']}}/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script> -->
+<!-- <script> -->
+<!--   tinymce.init({ -->
+<!--     selector: 'textarea#tinyeditor', -->
+<!--     plugins: 'code table lists', -->
+<!--     // extended_valid_elements : 'img[class|src|alt|title|width|loading=lazy]', -->
+<!--     toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table' -->
+<!--   }); -->
+<!-- </script> -->
 @endsection

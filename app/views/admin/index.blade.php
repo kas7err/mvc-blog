@@ -11,7 +11,7 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">title</th>
+                <th scope="col">Title</th>
                 <th scope="col">Created At</th>
                 <th scope="col">Updated At</th>
                 <th scope="col"></th>
