@@ -54,8 +54,7 @@ function array_trim(array $items): array
 */
 function sanitize(array $inputs, array $fields = [], int $default_filter = FILTER_SANITIZE_STRING, array $filters = FILTERS, bool $trim = true): array
 {
-    // since WYSIWYG editors already trim scripts/php tags
-    // im excluding DESC field from the sanitization
+    $desc = [];
     if(isset($inputs['description'])) {
         $desc = ['description' => $inputs['description']];
         unset($inputs['description']);
