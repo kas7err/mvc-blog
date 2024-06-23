@@ -9,7 +9,7 @@ class Request {
 
     public function __construct()
     {
-        if (isset($_SERVER['QUERY_STRING'])) {
+        if (array_key_exists('QUERY_STRING', $_SERVER)) {
             $queries = array();
             parse_str($_SERVER['QUERY_STRING'], $queries);
             $this->params = $queries;
