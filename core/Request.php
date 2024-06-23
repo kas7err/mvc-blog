@@ -10,14 +10,14 @@ class Request
 
     public function __construct()
     {
+        if (isset($_SERVER['QUERY_STRING'])) {
+            $queries = array();
+            parse_str($_SERVER['QUERY_STRING'], $queries);
+            $this->params = $queries;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->params = $_POST;
-        } else {
-            if (isset($_SERVER['QUERY_STRING'])) {
-                $queries = array();
-                parse_str($_SERVER['QUERY_STRING'], $queries);
-                $this->params = $queries;
-            }
         }
     }
 
