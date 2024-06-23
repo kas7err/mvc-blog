@@ -1,20 +1,23 @@
 <?php
+
 namespace Core;
 
 require INC_ROOT . '/app/helpers/sanitize.php';
 
-class Request {
-
+class Request
+{
     private array $params;
 
     public function __construct()
     {
-        if (array_key_exists('QUERY_STRING', $_SERVER)) {
-            $queries = array();
-            parse_str($_SERVER['QUERY_STRING'], $queries);
-            $this->params = $queries;
-        } else {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->params = $_POST;
+        } else {
+            if (isset($_SERVER['QUERY_STRING'])) {
+                $queries = array();
+                parse_str($_SERVER['QUERY_STRING'], $queries);
+                $this->params = $queries;
+            }
         }
     }
 
@@ -28,7 +31,7 @@ class Request {
         return substr($path, 0, $query);
     }
 
-    public  function getMethod(): string
+    public function getMethod(): string
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
