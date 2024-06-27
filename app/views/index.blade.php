@@ -16,10 +16,8 @@
             <span class="letter">{{$letter}} : </span>
             <span class="titles">
             @foreach($postWithLetter as $pl)
-                <a href="/articles?title={{$pl->title}}">{{$pl->title}}</a> |
-                @if($loop->last)
-                    <a href="/articles?title={{$pl->title}}">{{$pl->title}}</a>
-                @endif
+                <a href="/articles?title={{$pl->title}}">{{$pl->title}}</a>
+                @if(!$loop->last) | @endif
             @endforeach
             </span>
         </div>
