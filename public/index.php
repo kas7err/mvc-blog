@@ -15,6 +15,7 @@ $dotenv->load();
 
 require INC_ROOT . '/app/helpers/functions.php';
 require INC_ROOT . '/app/config/database.php';
+require INC_ROOT . '/app/config/caching.php';
 
 $app = new Application();
 

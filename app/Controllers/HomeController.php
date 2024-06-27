@@ -20,13 +20,7 @@ class HomeController extends BaseController
             $user->save();
         }
 
-        $alphabet = [
-            'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'Й',
-            'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У',
-            'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ь', 'Ю', 'Я'
-        ];
-        $posts = Post::select('title')->get();
-        $this->view::render('index', ['posts' => $posts, 'alphabet' => $alphabet]);
+        $this->view::render('index');
     }
 
     public function showArticle(Request $request)

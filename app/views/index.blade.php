@@ -1,3 +1,8 @@
+<?php
+
+use App\Models\Post;
+
+?>
 @extends('layouts.app')
 
 @section('content')
@@ -5,22 +10,18 @@
 <div class="container col-md-9 font-weight-bold my-5">
 
     <div class="list-group">
-        @foreach($alphabet as $letter)
+        @foreach(Post::cachedAlphabetTitles() as $letter => $post)
 
-        @php
-            $postWithLetter = $posts
-                ->filter(fn ($p) => str_starts_with(mb_strtolower($p->title), mb_strtolower($letter)))
-        @endphp
-
-        <div class="list-group-item list-group-item-{{count($postWithLetter) > 0 ? 'primary' : 'warning' }}">
+        <div class="list-group-item list-group-item-{{count($post) > 0 ? 'primary' : 'warning' }}">
             <span class="letter">{{$letter}} : </span>
             <span class="titles">
-            @foreach($postWithLetter as $pl)
-                <a href="/articles?title={{$pl->title}}">{{$pl->title}}</a>
+            @foreach($post as $p)
+                <a href="/articles?title={{$p['title']}}">{{$p['title']}}</a>
                 @if(!$loop->last) | @endif
             @endforeach
             </span>
         </div>
+
         @endforeach
     </div>
 
